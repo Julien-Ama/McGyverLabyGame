@@ -31,15 +31,18 @@ class Map:
         for x in range(15):
             for y in range(15):
                 if self.map[x][y] is letterForSpace:
-                    allPossibilitiesForObjects.insert(len(allPossibilitiesForObjects) - 1, (x, y))
+                    allPossibilitiesForObjects.insert(
+                        len(allPossibilitiesForObjects) - 1, (x, y))
 
         maxObjects = 3
         if len(allPossibilitiesForObjects) < 3:
-            print("Il n'y a pas assez de place sur la carte pour poser des objets.")
+            print("Il n'y a pas assez de place sur la carte"
+                  " pour poser des objets.")
             print("Veuillez vérifier la configuration de votre carte.")
             return False
         for objects in range(1, maxObjects + 1):
-            allPossibilitiesForObjectsCount = len(allPossibilitiesForObjects) - 1
+            allPossibilitiesForObjectsCount = len(
+                allPossibilitiesForObjects) - 1
             randomPosition = random.randint(0, allPossibilitiesForObjectsCount)
             randomCoordinates = allPossibilitiesForObjects[randomPosition]
             randomX = randomCoordinates[0]
@@ -87,7 +90,8 @@ class Map:
             }
         }
         if inputType in inputMove:
-            return self.doMoovement(x + inputMove[inputType]['x'], y + inputMove[inputType]['y'], visuel)
+            return self.doMoovement(x + inputMove[inputType]['x'],
+                                    y + inputMove[inputType]['y'], visuel)
         else:
             print(bcolors.FAIL + "Commande non reconnue")
             return False
@@ -120,10 +124,12 @@ class Map:
                 self.character.moove(xPossibility, yPossibility)
                 self.map[x][y] = letterForSpace
                 self.map[xPossibility][yPossibility] = letterOfCharacter
-                # ici on doit faire l'update de pygame ( xPossility, yPossibility, x, y)
+                # ici on doit faire l'update de pygame (
+                # xPossility, yPossibility, x, y)
                 visuel.update(x, y, xPossibility, yPossibility)
             else:
-                print(bcolors.WARN + "Vous ne pouvez pas aller par ici, il y a un mur !")
+                print(bcolors.WARN + "Vous ne pouvez pas aller par ici,"
+                                     " il y a un mur !")
         self.displayMap()
         print("Le personnage possède", self.character.objects, "objets")
         if self.character.objects is oneObjects:
@@ -140,7 +146,8 @@ class Map:
         Args:
             x: Coordonnées de X
             y: Coordonnées de Y
-        Returns: Boolean (Si les coordonnées sont toujours dans le labyrinthe ou pas)
+        Returns: Boolean (
+        Si les coordonnées sont toujours dans le labyrinthe ou pas)
         """
         if x < minX or x > maxX:
             return False

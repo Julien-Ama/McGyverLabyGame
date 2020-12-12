@@ -1,4 +1,3 @@
-import flake8 as flake8
 import pygame
 from BackSide import Map
 from configuration import *
@@ -39,11 +38,13 @@ class Visuel:
 
         self.gardien_image = pygame.image.load("ressource/Gardien.png")
         self.gardien_image.convert()
-        self.taille_gardien = pygame.transform.scale(self.gardien_image, (50, 50))
+        self.taille_gardien = pygame.transform.scale(self.gardien_image,
+                                                     (50, 50))
 
         self.aiguille_image = pygame.image.load("ressource/aiguille.png")
         self.aiguille_image.convert()
-        self.taille_aiguille = pygame.transform.scale(self.aiguille_image, (50, 50))
+        self.taille_aiguille = pygame.transform.scale(self.aiguille_image,
+                                                      (50, 50))
 
         self.tube_image = pygame.image.load("ressource/tube_plastique.png")
         self.tube_image.convert()
@@ -57,11 +58,14 @@ class Visuel:
         self.ItemInv_image.convert()
         self.taille_Inv = pygame.transform.scale(self.ItemInv_image, (30, 30))
 
-        self.hero = pygame.display.update(self.screen.blit(self.taille_mc, (50, 100)))
+        self.hero = pygame.display.update(self.screen.blit(self.taille_mc,
+                                                           (50, 100)))
 
     def update(self, x, y, xPossibility, yPossibility):
-        pygame.display.update(self.screen.blit(self.taille_mc, (yPossibility * 50, xPossibility * 50)))
-        pygame.display.update(self.screen.blit(self.taille_floor, (y * 50, x * 50)))
+        pygame.display.update(self.screen.blit(
+            self.taille_mc, (yPossibility * 50, xPossibility * 50)))
+        pygame.display.update(self.screen.blit(self.taille_floor,
+                                               (y * 50, x * 50)))
 
     def lancement(self, pygame, map):
 
@@ -91,30 +95,37 @@ class Visuel:
                 pygame.display.flip()
                 if map[x][y] is letterForWalls:
                     print("mur")
-                    rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50, (x + 1) * 50)
+                    rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50,
+                                            (x + 1) * 50)
                     self.screen.blit(self.taille_mur, rect_form)
                 elif map[x][y] is letterForSpace:
                     print("espace")
-                    rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50, (x + 1) * 50)
+                    rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50,
+                                            (x + 1) * 50)
                     self.screen.blit(self.taille_floor, rect_form)
                 elif map[x][y] is letterOfCharacter:
                     print("character")
-                    rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50, (x + 1) * 50)
+                    rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50,
+                                            (x + 1) * 50)
                     self.screen.blit(self.taille_mc, rect_form)
                 elif map[x][y] is letterForEnding:
                     print("fin")
-                    rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50, (x + 1) * 50)
+                    rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50,
+                                            (x + 1) * 50)
                     self.screen.blit(self.taille_gardien, rect_form)
                 elif map[x][y].isnumeric():
                     print("la numeriquevalue est : ", map[x][y])
                     if map[x][y] == "1":
-                        rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50, (x + 1) * 50)
+                        rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50,
+                                                (x + 1) * 50)
                         self.screen.blit(self.taille_aiguille, rect_form)
                     elif map[x][y] == "2":
-                        rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50, (x + 1) * 50)
+                        rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50,
+                                                (x + 1) * 50)
                         self.screen.blit(self.taille_tube, rect_form)
                     elif map[x][y] == "3":
-                        rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50, (x + 1) * 50)
+                        rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50,
+                                                (x + 1) * 50)
                         self.screen.blit(self.taille_ether, rect_form)
                 else:
                     print("une erreur se produit")
@@ -128,7 +139,9 @@ class Visuel:
         self.screen.blit(item_text, [125, 250])
 
         arial_font = pygame.font.SysFont("arial", 25)
-        item_text = arial_font.render("you're finally free, but you're still single.", False, self.green)
+        item_text = arial_font.render("you're finally free,"
+                                      " but you're still single.",
+                                      False, self.green)
         self.screen.blit(item_text, [150, 350])
         pygame.display.flip()
 
@@ -140,7 +153,9 @@ class Visuel:
         self.screen.blit(item_text, [150, 250])
 
         arial_font = pygame.font.SysFont("arial", 25)
-        item_text = arial_font.render("You must collect all the items before facing the keeper.", False, self.red)
+        item_text = arial_font.render(
+            "You must collect all the items before facing the keeper.",
+            False, self.red)
         self.screen.blit(item_text, [70, 350])
         pygame.display.flip()
 
@@ -168,7 +183,8 @@ class Visuel:
 
     def two(self):
         arial_font = pygame.font.SysFont("arial", 30)
-        item_text = arial_font.render("[     .     .     ]", False, self.orange)
+        item_text = arial_font.render("[     .     .     ]",
+                                      False, self.orange)
 
         self.screen.blit(item_text, [200, 755])
 
@@ -177,7 +193,8 @@ class Visuel:
 
     def max(self):
         arial_font = pygame.font.SysFont("arial", 30)
-        item_text = arial_font.render("[     .     .     ]", False, self.green)
+        item_text = arial_font.render("[     .     .     ]",
+                                      False, self.green)
 
         self.screen.blit(item_text, [200, 755])
 
