@@ -78,8 +78,6 @@ class Visuel:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     launched = False
-
-
                 elif event.type == pygame.KEYDOWN:
                     launched = map.setMouvement(event.key, self)
         while launched == False:
