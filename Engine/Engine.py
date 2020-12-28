@@ -1,5 +1,5 @@
-from BackSide import Map
-from FrontSide import Visuel
+from BackSide.Map import Map
+from FrontSide.Visuel import Visuel
 import pygame
 
 

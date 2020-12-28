@@ -1,6 +1,6 @@
 import pygame
-from BackSide import Map
-from configuration import CONFIG
+from BackSide.Map import Map
+from configuration import config as CONFIG
 
 
 class Visuel:

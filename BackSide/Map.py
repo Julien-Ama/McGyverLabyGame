@@ -1,7 +1,7 @@
 import random
-from configuration import CONFIG
+from configuration import config as CONFIG
 import bcolors as bcolors
-from BackSide import Character
+from BackSide.Character import Character
 import pygame
 
 
@@ -155,4 +155,3 @@ class Map:
         if y < CONFIG.minY or y > CONFIG.maxY:
             return False
         return True
-

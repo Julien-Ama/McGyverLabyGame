@@ -1,3 +1,4 @@
-from Engine import Engine
+from Engine.Engine import Engine
 
-myEngine = Engine()
+if __name__ == '__main__':
+    myEngine = Engine()
