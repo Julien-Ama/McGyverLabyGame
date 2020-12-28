@@ -1,6 +1,6 @@
 import pygame
 from BackSide import Map
-from configuration import *
+from configuration import CONFIG
 
 
 class Visuel:
@@ -80,7 +80,7 @@ class Visuel:
                     launched = False
                 elif event.type == pygame.KEYDOWN:
                     launched = map.setMouvement(event.key, self)
-        while launched == False:
+        while not launched:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     launched = True
@@ -91,22 +91,22 @@ class Visuel:
                 self.zero()
                 print(x, y)
                 pygame.display.flip()
-                if map[x][y] is letterForWalls:
+                if map[x][y] is CONFIG.letterForWalls:
                     print("mur")
                     rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50,
                                             (x + 1) * 50)
                     self.screen.blit(self.taille_mur, rect_form)
-                elif map[x][y] is letterForSpace:
+                elif map[x][y] is CONFIG.letterForSpace:
                     print("espace")
                     rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50,
                                             (x + 1) * 50)
                     self.screen.blit(self.taille_floor, rect_form)
-                elif map[x][y] is letterOfCharacter:
+                elif map[x][y] is CONFIG.letterOfCharacter:
                     print("character")
                     rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50,
                                             (x + 1) * 50)
                     self.screen.blit(self.taille_mc, rect_form)
-                elif map[x][y] is letterForEnding:
+                elif map[x][y] is CONFIG.letterForEnding:
                     print("fin")
                     rect_form = pygame.Rect(y * 50, x * 50, (y + 1) * 50,
                                             (x + 1) * 50)

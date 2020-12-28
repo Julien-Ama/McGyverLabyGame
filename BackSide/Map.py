@@ -1,5 +1,5 @@
 import random
-from configuration import *
+from configuration import CONFIG
 import bcolors as bcolors
 from BackSide import Character
 import pygame
@@ -10,7 +10,7 @@ class Map:
     def __init__(self):
         self.character = Character()
         self.map = []
-        with open(configFile) as f:
+        with open(CONFIG.configFile) as f:
             line = True
             while line:
                 line = f.readline()
@@ -23,14 +23,14 @@ class Map:
     def setCharacter(self):
         for x in range(15):
             for y in range(15):
-                if self.map[x][y] is letterOfCharacter:
+                if self.map[x][y] is CONFIG.letterOfCharacter:
                     self.character.setCoordinates(x, y)
 
     def addObjects(self):
         allPossibilitiesForObjects = []
         for x in range(15):
             for y in range(15):
-                if self.map[x][y] is letterForSpace:
+                if self.map[x][y] is CONFIG.letterForSpace:
                     allPossibilitiesForObjects.insert(
                         len(allPossibilitiesForObjects) - 1, (x, y))
 
@@ -56,11 +56,11 @@ class Map:
         print(bcolors.FAIL + "\n-----------------------------")
         for x in range(15):
             for y in range(15):
-                if self.map[x][y] is letterForSpace:
+                if self.map[x][y] is CONFIG.letterForSpace:
                     print(bcolors.BLUE + self.map[x][y], end=" ")
-                elif self.map[x][y] is letterOfCharacter:
+                elif self.map[x][y] is CONFIG.letterOfCharacter:
                     print(bcolors.WARN + self.map[x][y], end=" ")
-                elif self.map[x][y] is letterForWalls:
+                elif self.map[x][y] is CONFIG.letterForWalls:
                     print(bcolors.FAIL + self.map[x][y], end=" ")
                 else:
                     print(bcolors.PASS + self.map[x][y], end=" ")
@@ -107,13 +107,14 @@ class Map:
         x = self.character.x
         y = self.character.y
         if self.checkCoordinates(xPossibility, yPossibility):
-            if self.map[xPossibility][yPossibility] is not letterForWalls:
-                # visuel.mst()
+            if self.map[xPossibility][yPossibility] is not \
+                    CONFIG.letterForWalls:
                 if self.map[xPossibility][yPossibility].isnumeric() > 0:
                     self.character.addObject()
-                if self.map[xPossibility][yPossibility] is letterForEnding:
+                if self.map[xPossibility][yPossibility] is \
+                        CONFIG.letterForEnding:
                     print("vous êtes a la fin !")
-                    if self.character.objects is maxObjects:
+                    if self.character.objects is CONFIG.maxObjects:
                         print(" Vous avez gagné !")
                         visuel.Victory()
                     else:
@@ -122,8 +123,8 @@ class Map:
                     return False
 
                 self.character.moove(xPossibility, yPossibility)
-                self.map[x][y] = letterForSpace
-                self.map[xPossibility][yPossibility] = letterOfCharacter
+                self.map[x][y] = CONFIG.letterForSpace
+                self.map[xPossibility][yPossibility] = CONFIG.letterOfCharacter
                 # ici on doit faire l'update de pygame (
                 # xPossility, yPossibility, x, y)
                 visuel.update(x, y, xPossibility, yPossibility)
@@ -132,11 +133,11 @@ class Map:
                                      " il y a un mur !")
         self.displayMap()
         print("Le personnage possède", self.character.objects, "objets")
-        if self.character.objects is oneObjects:
+        if self.character.objects is CONFIG.oneObjects:
             visuel.one()
-        if self.character.objects is twoObjects:
+        if self.character.objects is CONFIG.twoObjects:
             visuel.two()
-        if self.character.objects is maxObjects:
+        if self.character.objects is CONFIG.maxObjects:
             visuel.max()
         return True
 
@@ -149,8 +150,9 @@ class Map:
         Returns: Boolean (
         Si les coordonnées sont toujours dans le labyrinthe ou pas)
         """
-        if x < minX or x > maxX:
+        if x < CONFIG.minX or x > CONFIG.maxX:
             return False
-        if y < minY or y > maxY:
+        if y < CONFIG.minY or y > CONFIG.maxY:
             return False
         return True
+
